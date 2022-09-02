@@ -8,6 +8,14 @@ Barber.hasMany(Service, {
     foreignKey: 'barber_id'
 });
 
+Barber.hasMany(Appointment, {
+    foreignKey: 'barber_id'
+});
+
+Appointment.belongsTo(Barber, {
+    foreignKey: 'barber_id'
+})
+
 Service.belongsTo(Barber, {
     foreignKey: 'barber_id'
 });
