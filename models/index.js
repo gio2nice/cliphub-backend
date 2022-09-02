@@ -4,7 +4,13 @@ const Service = require('./service-model');
 const Barber = require('./barber-model');
 
 // Associations
+Barber.hasMany(Service, {
+    foreignKey: 'barber_id'
+});
 
+Service.belongsTo(Barber, {
+    foreignKey: 'barber_id'
+})
 
 
 module.exports = {
