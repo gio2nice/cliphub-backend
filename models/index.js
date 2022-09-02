@@ -10,7 +10,23 @@ Barber.hasMany(Service, {
 
 Service.belongsTo(Barber, {
     foreignKey: 'barber_id'
+});
+
+Customer.hasOne(Appointment, {
+    foreignKey: 'customer_id'
+});
+
+Appointment.belongsTo(Customer, {
+    foreignKey: 'customer_id'
 })
+
+Service.hasMany(Appointment, {
+    foreignKey: 'service_id'
+});
+
+Appointment.belongsTo(Service, {
+    foreignKey: 'service_id'
+});
 
 
 module.exports = {
