@@ -125,24 +125,24 @@ router.post('/logout', (req, res) => {
 });
 
 //signUp
-router.post('/signUp', async (req, res) => {
-    try {
-        const barberData = await Barber.create(req.body);
-        req.session.save(() => {
-            req.session.barber_id = barberData.id;
-            req.session.loggedIn = true;
-            console.log('sign up ID');
-            console.log(barberData.id);
-            console.log('~~~');
-            console.log(req.session.user);
-            // const jsonUser= userData.toJSON();
+// router.post('/signUp', async (req, res) => {
+//     try {
+//         const barberData = await Barber.create(req.body);
+//         req.session.save(() => {
+//             req.session.barber_id = barberData.id;
+//             req.session.loggedIn = true;
+//             console.log('sign up ID');
+//             console.log(barberData.id);
+//             console.log('~~~');
+//             console.log(req.session.user);
+//             // const jsonUser= userData.toJSON();
 
-            res.redirect('/profile');
-        });
-        // res.status(200).json(userData)
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
+//             res.redirect('/profile');
+//         });
+//         // res.status(200).json(userData)
+//     } catch (err) {
+//         res.status(400).json(err);
+//     }
+// });
 
 module.exports = router;
