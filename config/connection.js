@@ -1,11 +1,17 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
 
-//GMS sequelize at first undeclared
+require('dotenv').config();
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME, 
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
 let sequelize;
 
-
-//GMS if our environment is JAWS declare sequelize there, if not use local host and our .env to check in
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
