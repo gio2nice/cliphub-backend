@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const apiRoutes = require('./api');
-const homeRoutes = require('./homeRoutes');
+const customerRoutes = require('./customer-routes');
+const barberRoutes = require('./barber-routes')
+const appointmentRoutes = require('./appointment-routes');
+//const portfolioRoutes = require('./portfolio-routes')
 
-router.use('/api', apiRoutes);
-router.use(homeRoutes)
+router.use('/customer', customerRoutes);
 
-//GMS not sure whether we need this router end or not in index. leaving it here for now
-// router.use((req, req) => {
-//     res.status(404).end();
-// })
+router.use('/barber', barberRoutes);
 
-module.exports = router;
+router.use('/appointment', appointmentRoutes);
+
+//router.use('/portfolio', portfolioRoutes);
