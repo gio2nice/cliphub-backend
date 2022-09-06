@@ -1,6 +1,7 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes, Sequelize } = require('sequelize');
+// const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
+const { sequelize }= require('../config/connection');
 
 class Barber extends Model { 
     // checkPassword(barberPw) {
@@ -10,12 +11,12 @@ class Barber extends Model {
 
 Barber.init(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
+        // id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     primaryKey: true,
+        //     autoIncrement: true,
+        // },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -30,15 +31,14 @@ Barber.init(
         },
         password: {
             type: DataTypes.STRING,
-            require: true,
-            unique: true,
+            allowNull: false,
             validate: {
                 len: [8, 20]
             }
         },
         phone: {
-            type: Number,
-            require: true,
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
     },
     {
@@ -53,10 +53,10 @@ Barber.init(
             },
         },
         sequelize,
-        timestamps: false,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'barber'
+        // timestamps: false,
+        // freezeTableName: true,
+        // underscored: true,
+        // modelName: 'barber'
     }
 );
 

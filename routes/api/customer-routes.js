@@ -1,5 +1,5 @@
 const express = require('express');
-const Customer = require('../../models');
+const { Customer } = require('../models');
 const router = express.Router();
 const app = express();
 
@@ -127,5 +127,5 @@ router.post('/logout', (req, res) => {
     }
 });
 
-module.exports
+// module.exports
 module.exports = router;
