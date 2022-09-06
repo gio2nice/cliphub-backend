@@ -1,5 +1,5 @@
 const express = require('express');
-const Barber = require('../models/Barber');
+const Barber = require('../../models/Barber');
 const router = express.Router();
 // const { barber } = require('../models/Barber')
 const app = express();
