@@ -116,4 +116,16 @@ router.post('/login', async (req, res) => {
     }
 });
 
+//log out
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            req.status(404).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
+
+module.exports
 module.exports = router;
