@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS barber_db;
-CREATE DATABASE barber_db;  
+DROP DATABASE IF EXISTS cliphub_db;
+CREATE DATABASE cliphub_db;  
 
-USE barber_db;
+-- USE barber_db;
 
 -- CREATE TABLE barber (
 --     barber_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

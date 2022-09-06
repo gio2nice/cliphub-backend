@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { appointment } = require('../models/appointment-model')
+const { appointment } = require('../../models/appointment-model')
 const app = express();
 
 router.get('/', (req, res) =>{
