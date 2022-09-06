@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
-const { sequelize } = require("./config");
+const { sequelize } = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
