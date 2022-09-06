@@ -3,9 +3,9 @@ const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
 class Barber extends Model { 
-    checkPassword(barberPw) {
-        return bcrypt.compareSync(barberPw, this.password)
-    };
+    // checkPassword(barberPw) {
+    //     return bcrypt.compareSync(barberPw, this.password)
+    // };
 }
 
 Barber.init(
