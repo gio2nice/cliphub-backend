@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
-const { sequelize } = require("./config");
+const { sequelize } = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
@@ -13,7 +13,7 @@ const sess = {
     secret: process.env.SESS_SECRET,
     cookie: {sameSite: true},
     resave: false,
-    saveUnitialized: false,
+    saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize
     })

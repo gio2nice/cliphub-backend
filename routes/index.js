@@ -2,7 +2,7 @@ const router = require('express').Router();
 const customerRoutes = require('./customer-routes');
 const barberRoutes = require('./barber-routes')
 const appointmentRoutes = require('./appointment-routes');
-const imageRoutes = require('./images');
+const imageRoutes = require('./image');
 //const portfolioRoutes = require('./portfolio-routes')
 
 router.use('/customer', customerRoutes);

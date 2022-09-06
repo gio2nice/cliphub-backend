@@ -1,4 +1,4 @@
-const { cloudinary } = require('../config');
+const { cloudinary } = require('../config/connection');
 const { Barber, Image} = require("../models");
 
 
