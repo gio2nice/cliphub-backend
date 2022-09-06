@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const customerRoutes = require('./customer-routes');
-const barberRoutes = require('./barber-routes')
-const appointmentRoutes = require('./appointment-routes');
-const imageRoutes = require('./images');
+const customerRoutes = require('./api/customer-routes');
+const barberRoutes = require('./routes/api/barber-routes.js')
+const appointmentRoutes = require('./api/appointment-routes');
+const imageRoutes = require('./routes/api/image');
 //const portfolioRoutes = require('./portfolio-routes')
 
 router.use('/customer', customerRoutes);

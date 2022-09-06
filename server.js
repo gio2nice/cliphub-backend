@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
-const { sequelize } = require("./config");
+const { sequelize } = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
@@ -11,9 +11,9 @@ require('dotenv').config();
 
 const sess = {
     secret: process.env.SESS_SECRET,
-    cookie: {sameSite: true},
+    cookie: {maxAge: 20000},
     resave: false,
-    saveUnitialized: false,
+    saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize
     })
@@ -30,4 +30,4 @@ app.use('/api', require("./routes"));
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
     sequelize.sync({ force: false });
-})
+}) 
