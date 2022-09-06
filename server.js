@@ -11,9 +11,9 @@ require('dotenv').config();
 
 const sess = {
     secret: process.env.SESS_SECRET,
-    cookie: {sameSite: true},
+    cookie: {maxAge: 20000},
     resave: false,
-    saveUnitialized: false,
+    saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize
     })
