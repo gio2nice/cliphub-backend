@@ -1,5 +1,5 @@
-const { cloudinary } = require('../config');
-const { Barber, Image} = require("../../models");
+const { cloudinary } = require('../config/connection');
+const { Barber, Image} = require("../models");
 
 
 const router = require('express').Router();

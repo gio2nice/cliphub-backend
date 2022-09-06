@@ -1,7 +1,7 @@
 const express = require('express');
-const Barber = require('../models/barber-model');
+const Barber = require('../models/Barber');
 const router = express.Router();
-const { barber } = require('../models/barber-model')
+// const { barber } = require('../models/Barber')
 const app = express();
 
 // find all barbers
@@ -17,14 +17,10 @@ router.get('/', (req, res) =>{
     }
 })
 // create a barber
-router.post('/', (req,res) => {
-    if(!req.session.loggedIn){
-        res.status(403).json({msg:"must login first!"})
-    }
+router.post('/', async (req,res) => {
     try {
-        const newBarber = Barber.create({ 
+        const newBarber = await Barber.create({ 
             ...req.body,
-            barberId: req.session.barberId,
         });
 
         res.status(200).json(newBarber);
@@ -125,7 +121,7 @@ router.post('/logout', (req, res) => {
 });
 
 //signUp
-git // router.post('/signUp', async (req, res) => {
+ // router.post('/signUp', async (req, res) => {
 //     try {
 //         const barberData = await Barber.create(req.body);
 //         req.session.save(() => {
