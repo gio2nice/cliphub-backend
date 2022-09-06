@@ -125,7 +125,7 @@ router.post('/logout', (req, res) => {
 });
 
 //signUp
-// router.post('/signUp', async (req, res) => {
+git // router.post('/signUp', async (req, res) => {
 //     try {
 //         const barberData = await Barber.create(req.body);
 //         req.session.save(() => {
