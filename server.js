@@ -11,7 +11,7 @@ require('dotenv').config();
 
 const sess = {
     secret: process.env.SESS_SECRET,
-    cookie: {sameSite: true},
+    cookie: {maxAge: 20000},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -30,4 +30,4 @@ app.use('/api', require("./routes"));
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
     sequelize.sync({ force: false });
-})
+}) 
