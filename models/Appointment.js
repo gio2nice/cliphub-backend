@@ -36,19 +36,20 @@ Appointment.init(
         //     }
         // },
         appointment_date: {
-            type: DataTypes.DATE,
+            type: Date,
             allowNull: false,
           },
-          appointment_date_end: {
-            type: DataTypes.DATE
-            // allowNull: false,
-          },
+        //   appointment_date_end: {
+        //     type: Date,
+        //     // allowNull: false,
+        //   },
           appointment_time: {
-              type: DataTypes.TIME,
+              type: Number,
+              // type: Date,
               allowNull: false,
           },
           appointment_time_end: {
-            type: DataTypes.TIME
+            type: Number,
             // allowNull: false,
         },
 
