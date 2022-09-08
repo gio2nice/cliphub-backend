@@ -19,36 +19,36 @@ Appointment.init(
         //     },
         //     // autoIncrement: true
         // },
-        // customer_id: {
-        //     type: DataTypes.STRING,
-        //     references: {
-        //         model: 'Customer',
-        //         key: 'id',
-        //         unique: false
-        //     }
-        // },
-        // barber_id: {
-        //     type: DataTypes.STRING,
-        //     references: {
-        //         model: 'Barber',
-        //         key: 'id',
-        //         unique: false
-        //     }
-        // },
+        customerId: {
+            type: DataTypes.STRING,
+            references: {
+                model: 'Customer',
+                key: 'id',
+                unique: false
+            }
+        },
+        barberId: {
+            type: DataTypes.STRING,
+            references: {
+                model: 'Barber',
+                key: 'id',
+                unique: false
+            }
+        },
         appointment_date: {
-            type: DataTypes.DATE,
+            type: Date,
             allowNull: false,
           },
-          appointment_date_end: {
-            type: DataTypes.DATE
+        //   appointment_date_end: {
+        //     type: Date
             // allowNull: false,
-          },
+        //   },
           appointment_time: {
-              type: DataTypes.TIME,
+              type: String,
               allowNull: false,
           },
           appointment_time_end: {
-            type: DataTypes.TIME
+            type: String
             // allowNull: false,
         },
 
