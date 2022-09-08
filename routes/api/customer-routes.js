@@ -1,30 +1,31 @@
 const express = require('express');
-const { Customer } = require('../../models/Customer');
+const { Customer } = require('../../models');
 const router = express.Router();
 const app = express();
+const bcrypt = require('bcrypt');
 
 // find all customers
 router.get('/', (req, res) =>{
-    if(!req.session.loggedIn){
-        res.status(403).json({msg:"must login first!"})
-    }
-    try {
-        const customer = Customer.findAll();
-        res.json(customer)
-    } catch (err) {
-        res.status(400).json(err);
-    }
+    
+    
+     Customer.findAll()
+     .then(data => {
+         res.status(200).json(data)
+     }).catch(err => {
+         console.log(err)
+         res.status(500).json({err, msg: 'error occured'})
+     })
+        
 })
 
 // create a customer
-router.post('/', (req,res) => {
-    if(!req.session.loggedIn){
-        res.status(403).json({msg:"must login first!"})
-    }
+router.post('/', async (req,res) => {
+    // if(!req.session.loggedIn){
+    //     res.status(403).json({msg:"must login first!"})
+    // }
     try {
-        const newCustomer = Customer.create({
+        const newCustomer = await Customer.create({
             ...req.body,
-            barberId: req.session.barberId,
         });
 
         res.status(200).json(newCustomer);
@@ -35,9 +36,9 @@ router.post('/', (req,res) => {
 
 //find one customer
 router.get("/:id",(req,res)=>{
-    if(!req.session.loggedIn){
-        res.status(403).json({msg:"must login first!"})
-    }
+    // if(!req.session.loggedIn){
+    //     res.status(403).json({msg:"must login first!"})
+    // }
     Customer.findOne({
         where:{
             id:req.params.id
@@ -51,14 +52,14 @@ router.get("/:id",(req,res)=>{
 
 //delete a customer
 router.delete('/:id', async (req, res) => {
-    if(!req.session.loggedIn){
-        res.status(403).json({msg:"must login first!"})
-    }
+    // if(!req.session.loggedIn){
+    //     res.status(403).json({msg:"must login first!"})
+    // }
     try {
         const customerData = await Customer.destroy({
             where:{
-                id: req.params.id,
-                customerId: req.session.customerId,
+                id: req.params.id
+                // customerId: req.session.customerId,
             },
         });
 
@@ -87,43 +88,50 @@ router.put('/:id', (req, res) => {
 })
 
 //log in
-router.post('/login', async (req, res) => {
-    try {
-        const customerData = await Customer.findOne({ where: { email: req.body.customer_email } });
-
-        if (!customerData) {
-            console.log(customerData)
-            res.status(400).json({ message: "Incorrect login info, try again" });
-            return;
+router.post("/login", (req, res) => [
+    Customer.findOne({
+        where: {
+            email: req.body.email
         }
-
-
-
-        if (!bcrypt.compareSync(req.body.customer_password, customerData.customer_password)) {
-            res.status(401).json({ msg: "incorrect login info, try again!" });
-            return
+    }).then(foundCustomer => {
+        console.log(foundCustomer)
+        if (!foundCustomer) {
+            return res.status(401).json({ msg: "invalid login credentials!" })
         }
-
-
+        if (!bcrypt.compareSync(req.body.password, foundCustomer.password)) {
+            return res.status(401).json({ msg: "invalid login credentials!" })
+        }
         req.session.save(() => {
-            req.session.customerId = customerData.id;
+            req.session.id = foundCustomer.id;
             req.session.loggedIn = true;
 
-            res.json({ customer: customerData, message: "You are now logged in!" });
+            res.json({ barber: foundCustomer, message: "You are now logged in!" });
         });
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
+
+    }).catch(err => {
+        console.log(err)
+        res.status(500).json({ msg: "an error occurred", err })
+    })
+])
 
 //log out
+// router.post('/logout', (req, res) => {
+//     if (req.session.loggedIn) {
+//         req.session.destroy(() => {
+//             req.status(404).end();
+//         });
+//     } else {
+//         res.status(404).end();
+//     }
+// });
+
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
-            req.status(404).end();
+            res.status(200).json({msg: 'logged out!'});
         });
     } else {
-        res.status(404).end();
+        res.status(401).json({msg: "you must be logged in!"});
     }
 });
 
