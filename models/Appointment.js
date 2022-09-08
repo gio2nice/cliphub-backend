@@ -40,7 +40,6 @@ Appointment.init(
             allowNull: false,
           },
         //   appointment_date_end: {
-<<<<<<< HEAD
         //     type: Date,
         //     // allowNull: false,
         //   },
@@ -51,17 +50,15 @@ Appointment.init(
           },
           appointment_time_end: {
             type: Number,
-=======
         //     type: Date
             // allowNull: false,
-        //   },
+          },
           appointment_time: {
               type: String,
               allowNull: false,
           },
           appointment_time_end: {
             type: String
->>>>>>> a386afaafc13474212a0fcacdd8f8094e908b319
             // allowNull: false,
         },
 
