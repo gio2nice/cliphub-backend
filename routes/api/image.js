@@ -1,5 +1,5 @@
-const { cloudinary } = require('../config/connection');
-const { Barber, Image} = require("../models");
+const { cloudinary } = require('../../config/connection');
+const { Barber, Image} = require("../../models");
 
 
 const router = require('express').Router();
@@ -18,12 +18,12 @@ router.get('/:BarberId', async (req, res) => {
 
     Image.findAll({
         where: {
-            u_id: BarberId
+            id: BarberId
         }
     }).then(imgRsp => {
         Barber.findOne({
             where: {
-                u_id: BarberId
+                id: BarberId
             }
         }).then(BarberResp => {
             imgRsp.Barbername = BarberResp.name;
