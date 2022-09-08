@@ -4,18 +4,8 @@ const router = express.Router();
 // const { barber } = require('../models/Barber')
 const app = express();
 const bcrypt = require('bcrypt');
+
 // // find all barbers
-// router.get('/', (req, res) =>{
-//     // if(!req.session.loggedIn){
-//     //     res.status(403).json({msg:"must login first!"})
-//     // }
-//     try {
-//         const barber = Barber.findAll();
-//         res.json(barber)
-//     } catch (err) {
-//         res.status(400).json(err);
-//     }
-// })
 router.get("/", (req, res) => {
     Barber.findAll({
     }).then(Barber => {
