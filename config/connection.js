@@ -28,4 +28,4 @@ if (process.env.JAWSDB_URL) {
 }
 
 //GMS export whichever sequelize we end up using 
-module.exports = { sequelize, cloudinary };
+module.exports = { sequelize };
