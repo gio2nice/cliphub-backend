@@ -74,7 +74,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// edit profile
+// Update profile
 router.put('/:id', (req, res) => {
     Customer.update({
         name: req.body.customer_name,
