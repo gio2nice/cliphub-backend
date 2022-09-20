@@ -75,17 +75,17 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Update profile
-router.put('/:id', (req, res) => {
-    Customer.update({
-        name: req.body.customer_name,
-        password: req.body.customer_password,
-        phone_number: req.body.customer_phone_number
-    }).then(data => {
-        res.json(data)
-    }).catch(err => {
-        res.status(500).json({ msg: "sheesh, it ain't work", err })
-    })
-})
+// router.put('/:id', (req, res) => {
+//     Customer.update({
+//         name: req.body.customer_name,
+//         password: req.body.customer_password,
+//         phone_number: req.body.customer_phone_number
+//     }).then(data => {
+//         res.json(data)
+//     }).catch(err => {
+//         res.status(500).json({ msg: "sheesh, it ain't work", err })
+//     })
+// })
 
 //log in
 router.post("/login", (req, res) => [
