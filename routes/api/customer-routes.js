@@ -86,6 +86,14 @@ router.delete('/:id', async (req, res) => {
 //         res.status(500).json({ msg: "sheesh, it ain't work", err })
 //     })
 // })
+router.put('/update/:id',(req,res)=>{
+    const promise = Customer.findByIdAndUpdate(req.body.name, req.body.password, req.body.phone_number);
+    promise.then((data)=>{
+      res.json(data);
+    }).catch((err)=>{
+      res.json(err);
+    })
+  })
 
 //log in
 router.post("/login", (req, res) => [
